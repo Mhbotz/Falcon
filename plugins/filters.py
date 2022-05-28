@@ -1,5 +1,5 @@
 import io
-from pyrogram import filters, Client
+from pyrogram import filters, Client, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.filters_mdb import (
     add_filter,
@@ -21,7 +21,7 @@ async def addfilter(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "PRIVATE":
+    if chat_type == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -35,7 +35,7 @@ async def addfilter(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -44,8 +44,8 @@ async def addfilter(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != "administrator"
-            and st.status.value != "owner"
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
         await message.reply_text("You Don't Have Permission To Create This Filter.", quote=True)
@@ -125,7 +125,7 @@ async def get_all(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
-    if chat_type.name == "PRIAVTE":
+    if chat_type == enums.ChatType.PRIVATE:
         userid = message.from_user.id
         grpid = await active_connection(str(userid))
         if grpid is not None:
@@ -140,7 +140,7 @@ async def get_all(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -149,8 +149,8 @@ async def get_all(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != "administrator"
-            and st.status.value != "owner"
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
         return
@@ -189,7 +189,7 @@ async def deletefilter(client, message):
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
 
-    if chat_type.name == "PRIVATE":
+    if chat_type == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -202,7 +202,7 @@ async def deletefilter(client, message):
         else:
             await message.reply_text("I'm not connected to any groups!", quote=True)
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -248,7 +248,7 @@ async def delallconfirm(client, message):
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
 
-    if chat_type.name == "PRIVATE":
+    if chat_type == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -262,7 +262,7 @@ async def delallconfirm(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
