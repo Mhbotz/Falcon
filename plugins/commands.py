@@ -11,7 +11,7 @@ from typing import Optional, Any
 
 from bot import Bot
 from Script import script
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.raw.functions import messages as rmsg
 from database.batch_db import get_batch
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
@@ -518,7 +518,7 @@ async def settings(client, message):
         chat_type = message.chat.type
         args = message.text.html.split(None, 1)
 
-        if chat_type.name == "PRIVATE":
+        if chat_type == enums.ChatType.PRIVATE:
             grpid = await active_connection(str(userid))
             if grpid is not None:
                 grp_id = grpid
@@ -532,7 +532,7 @@ async def settings(client, message):
                 await message.reply_text("I'm not connected to any groups!", quote=True)
                 return
 
-        elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+        elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             grp_id = message.chat.id
             title = message.chat.title
 
@@ -541,8 +541,8 @@ async def settings(client, message):
 
         st = await client.get_chat_member(grp_id, userid)
         if (
-                st.status.value != "administrator"
-                and st.status.value != "owner"
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
                 and str(userid) not in ADMINS
         ):
             return
