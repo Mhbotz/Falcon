@@ -87,8 +87,14 @@ async def gen_link_s(client: Client, message):
         return await channel_message.reply("Send A Supported Media [video, audio, document]")
 
     outlist = []
-    file_type = channel_message.media
-    file = getattr(channel_message, file_type)
+    # file_type = channel_message.media
+    # file = getattr(channel_message, file_type)
+    for file_type in ("document", "video", "audio"):
+        file = getattr(channel_message, file_type, None)
+        if file is not None:
+            break
+        else:
+            continue
     file = {
         "file_id": file.file_id,
         "caption": f"<code>{channel_message.caption}</code>" if file_type in ["video", 'audio',
@@ -291,8 +297,15 @@ async def gen_link_batch(bot, message):
             if not msg.media:
                 # only media messages supported.
                 continue
-            file_type = msg.media
-            file = getattr(msg, file_type)
+            # file_type = msg.media
+            # file = getattr(msg, file_type)
+            for file_type in ("document", "video", "audio"):
+                file = getattr(msg, file_type, None)
+                if file is not None:
+                    break
+                else:
+                    continue
+
             file = {
                 "file_id": file.file_id,
                 "caption": f"<code>{msg.caption}</code>" if file_type in ["video", 'audio',
