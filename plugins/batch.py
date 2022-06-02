@@ -50,8 +50,8 @@ async def gen_link_s(client: Client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status.value != enums.ChatMemberStatus.OWNER
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
         return
@@ -143,8 +143,8 @@ async def gen_link_batch(bot, message):
 
     st = await bot.get_chat_member(grp_id, userid)
     if (
-            st.status.value != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status.value != enums.ChatMemberStatus.OWNER
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
         return
