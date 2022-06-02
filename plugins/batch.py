@@ -89,7 +89,7 @@ async def gen_link_s(client: Client, message):
     outlist = []
     # file_type = channel_message.media
     # file = getattr(channel_message, file_type)
-    for file_type in ("document", "video", "audio"):
+    for file_type in ("document", "video", "audio", "sticker"):
         file = getattr(channel_message, file_type, None)
         if file is not None:
             break
@@ -299,7 +299,7 @@ async def gen_link_batch(bot, message):
                 continue
             # file_type = msg.media
             # file = getattr(msg, file_type)
-            for file_type in ("document", "video", "audio"):
+            for file_type in ("document", "video", "audio", "sticker"):
                 file = getattr(msg, file_type, None)
                 if file is not None:
                     break
