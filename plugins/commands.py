@@ -629,7 +629,7 @@ async def settings(client, message):
 
 
 @Client.on_message(filters.command('gbroadcast') & filters.private & filters.user(ADMINS))
-async def gp_broadcast(client, message):
+async def g_broadcast(client, message):
     try:
         userid: Optional[Any] = message.from_user.id if message.from_user else None
         if not userid:
@@ -772,7 +772,7 @@ async def gp_broadcast(client, message):
         i = 0
         done = 0
         success = 0
-        totl_chats = len(chats)
+        # totl_chats = len(chats)
         try:
             for chat in chats:
                 try:
@@ -780,7 +780,7 @@ async def gp_broadcast(client, message):
                     i += 1
                     ttl = await client.get_chat(str(chat['id']))
                     title = ttl.title
-                    await msg.edit_text(f"**Broadcast Successfully Completed** `{title}: {i}/{totl_chats}`")
+                    await msg.edit_text(f"**Broadcast Successfully Completed** `{title}: {i}`")
                     success += 1
                     await send_broadcast_message(str(chat['id']), text, data_type, content, buttons, client, message)
                     await asyncio.sleep(0.5)
@@ -793,8 +793,8 @@ async def gp_broadcast(client, message):
 
         time_taken = datetime.timedelta(seconds=int(time.time() - start_time))
         await msg.edit_text(
-            f"**Broadcast Completed:**\n**Completed in** `{time_taken} seconds.`\n\n**Total Chats** `{totl_chats}`\n"
-            f"**Completed:** `{done} / {totl_chats}`\n**Success:** `{success}`")
+            f"**Broadcast Completed:**\n**Completed in** `{time_taken} seconds.`\n\n**Total Chats** ``\n"
+            f"**Completed:** `{done} `\n**Success:** `{success}`")
     except Exception as e:
         await message.reply_text(f"{str(e)}")
         return
