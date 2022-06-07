@@ -778,11 +778,11 @@ async def gp_broadcast(client, message):
                 try:
                     text, data_type, content, buttons = get_msg_type(b_msg)
                     i += 1
-                    ttl = await client.get_chat(str(chat['id']))
+                    ttl = await client.get_chat(chat['id'])
                     title = ttl.title
                     await msg.edit_text(f"**Broadcast Successfully Completed** `{title}: {i}`")
                     success += 1
-                    await send_broadcast_message(str(chat['id']), text, data_type, content, buttons, client, message)
+                    await send_broadcast_message(chat['id'], text, data_type, content, buttons, client, message)
                     await asyncio.sleep(0.5)
                 except Exception as e:
                     await message.reply(str(e))
