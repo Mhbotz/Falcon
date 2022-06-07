@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import sys
+import textwrap
 import time
 import logging
 import random
@@ -180,28 +181,37 @@ async def start(client, message):
                         caption_entities=entities,
                     )
                 else:
+                    buttons = [[
+                        InlineKeyboardButton('🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"),
+                        InlineKeyboardButton('🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio")
+                    ], [
+                        InlineKeyboardButton('⭕ ᴘᴍ ᴍᴇ ⭕', url="https://t.me/UFSChatBot")
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+
                     await client.send_cached_media(
                         chat_id=message.from_user.id,
                         file_id=msg.get("file_id"),
                         caption=f_caption + f"\n\n{f_sub_caption}",
                         protect_content=FILE_SECURE,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton(
-                                        '🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"
-                                    ),
-                                    InlineKeyboardButton(
-                                        '🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio"
-                                    )
-                                ],
-                                [
-                                    InlineKeyboardButton(
-                                        '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
-                                    )
-                                ]
-                            ]
-                        )
+                        reply_markup=reply_markup
+                        # InlineKeyboardMarkup(
+                        #     [
+                        #         [
+                        #             InlineKeyboardButton(
+                        #                 '🎭 Nᴇᴡ \nUᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"
+                        #             ),
+                        #             InlineKeyboardButton(
+                        #                 '🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio"
+                        #             )
+                        #         ],
+                        #         [
+                        #             InlineKeyboardButton(
+                        #                 '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
+                        #             )
+                        #         ]
+                        #     ]
+                        # )
                     )
             except Exception as err:
                 await sts.edit("FAILED")
@@ -266,28 +276,36 @@ async def start(client, message):
 
     f_caption = f_caption + f"\n\n{f_sub_caption}"
     try:
+        buttons = [[
+            InlineKeyboardButton('🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"),
+            InlineKeyboardButton('🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio")
+        ], [
+            InlineKeyboardButton('⭕ ᴘᴍ ᴍᴇ ⭕', url="https://t.me/UFSChatBot")
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
         await client.send_cached_media(
             chat_id=message.from_user.id,
             file_id=file_id,
             caption=f_caption,
             protect_content=FILE_SECURE,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            '🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"
-                        ),
-                        InlineKeyboardButton(
-                            '🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio"
-                        )
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
-                        )
-                    ]
-                ]
-            )
+            reply_markup=reply_markup
+            # InlineKeyboardMarkup(
+            #     [
+            #         [
+            #             InlineKeyboardButton(
+            #                 '🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"
+            #             ),
+            #             InlineKeyboardButton(
+            #                 '🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio"
+            #             )
+            #         ],
+            #         [
+            #             InlineKeyboardButton(
+            #                 '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
+            #             )
+            #         ]
+            #     ]
+            # )
         )
     except Exception as e:
         return await message.reply(e)
@@ -618,7 +636,7 @@ async def gp_broadcast(client, message):
             return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
         chat_type = message.chat.type
 
-        if chat_type.name == "PRIVATE":
+        if chat_type == enums.ChatType.PRIVATE:
             grpid = await active_connection(str(userid))
             if grpid is not None:
                 grp_id = grpid
@@ -632,7 +650,7 @@ async def gp_broadcast(client, message):
                 await message.reply_text("I'm not connected to any groups!", quote=True)
                 return
 
-        elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+        elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             grp_id = message.chat.id
             title = message.chat.title
 
@@ -641,8 +659,8 @@ async def gp_broadcast(client, message):
 
         st = await client.get_chat_member(grp_id, userid)
         if (
-                st.status.value != "administrator"
-                and st.status.value != "owner"
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
                 and str(userid) not in ADMINS
         ):
             return
@@ -679,6 +697,92 @@ async def gp_broadcast(client, message):
                     await msg.edit_text(f"**Broadcast Successfully Completed** `{title}: {i}/{totl_chats}`")
                     success += 1
                     await send_broadcast_message(groupid, text, data_type, content, buttons, client, message)
+                    await asyncio.sleep(0.5)
+                except Exception as e:
+                    await message.reply(str(e))
+                    pass
+        except Exception as e:
+            await message.reply(str(e))
+            return
+
+        time_taken = datetime.timedelta(seconds=int(time.time() - start_time))
+        await msg.edit_text(
+            f"**Broadcast Completed:**\n**Completed in** `{time_taken} seconds.`\n\n**Total Chats** `{totl_chats}`\n"
+            f"**Completed:** `{done} / {totl_chats}`\n**Success:** `{success}`")
+    except Exception as e:
+        await message.reply_text(f"{str(e)}")
+        return
+
+
+@Client.on_message(filters.command('gpbroadcast') & filters.private & filters.user(ADMINS))
+async def gp_broadcast(client, message):
+    try:
+        userid: Optional[Any] = message.from_user.id if message.from_user else None
+        if not userid:
+            return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+        chat_type = message.chat.type
+
+        if chat_type == enums.ChatType.PRIVATE:
+            grpid = await active_connection(str(userid))
+            if grpid is not None:
+                grp_id = grpid
+                try:
+                    chat = await client.get_chat(grpid)
+                    title = chat.title
+                except:
+                    await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                    return
+            else:
+                await message.reply_text("I'm not connected to any groups!", quote=True)
+                return
+
+        elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+            grp_id = message.chat.id
+            title = message.chat.title
+
+        else:
+            return
+
+        st = await client.get_chat_member(grp_id, userid)
+        if (
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
+                and str(userid) not in ADMINS
+        ):
+            return
+
+        msg = await message.reply('`Getting List Of Chats..`', quote=True)
+        await asyncio.sleep(1)
+
+        b_msg = message.reply_to_message
+
+        start_time = time.time()
+        await msg.edit_text(
+            text='`Please Wait, Broadcasting To Connected Chat Is Starting Soon...`')
+        await asyncio.sleep(1)
+
+        userid = message.from_user.id
+        chats = await db.get_all_chats()
+
+        if chats is None:
+            await msg.edit_text(
+                "There Are No Groups!! Add To Some Groups First.")
+            return
+
+        i = 0
+        done = 0
+        success = 0
+        totl_chats = len(chats)
+        try:
+            for chat in chats:
+                try:
+                    text, data_type, content, buttons = get_msg_type(b_msg)
+                    i += 1
+                    ttl = await client.get_chat(str(chat['id']))
+                    title = ttl.title
+                    await msg.edit_text(f"**Broadcast Successfully Completed** `{title}: {i}/{totl_chats}`")
+                    success += 1
+                    await send_broadcast_message(str(chat['id']), text, data_type, content, buttons, client, message)
                     await asyncio.sleep(0.5)
                 except Exception as e:
                     await message.reply(str(e))
