@@ -774,7 +774,7 @@ async def gp_broadcast(client, message):
         success = 0
         # totl_chats = len(chats)
         try:
-            for chat in chats:
+            async for chat in chats:
                 try:
                     text, data_type, content, buttons = get_msg_type(b_msg)
                     i += 1
