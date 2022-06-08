@@ -532,7 +532,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f_caption
         if f_caption is None:
             f_caption = f"{files.file_name}"
-        f_caption = f_caption + f"\n\n<code>┈•••✿ @UniversalFilmStudio ✿•••┈\n\n💾 Size: {size}</code>"
+
+        f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
+                    f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
+                    f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                    f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+
+        f_caption = f_caption + f"\n\n{f_sub_caption}"
 
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -559,7 +565,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ],
                             [
                                 InlineKeyboardButton(
-                                    '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
+                                    "⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0"
                                 )
                             ]
                         ]
@@ -617,8 +623,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
                                 f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
-                                f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UFSWebSeries \n🔊 " \
-                                f"Cʜᴀɴɴᴇʟ: @UFSNewRelease \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+                                f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                                f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
 
                 # f_caption + f"\n\n<code>┈•••✿ @UniversalFilmStudio ✿•••┈\n\n💾 Size: {size}</code>"
                 try:
@@ -649,7 +655,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                     ],
                                     [
                                         InlineKeyboardButton(
-                                            '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
+                                            "⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0"
                                         )
                                     ]
                                 ]
@@ -678,8 +684,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
         f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
                         f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
-                        f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UFSWebSeries \n🔊 " \
-                        f"Cʜᴀɴɴᴇʟ: @UFSNewRelease \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+                        f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                        f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
 
         f_caption = f_caption + f"\n\n{f_sub_caption}"
         try:
@@ -701,7 +707,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         ],
                         [
                             InlineKeyboardButton(
-                                '⭕️ ᴘᴍ ᴍᴇ ⭕️', url="https://t.me/UFSChatBot"
+                                "⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0"
                             )
                         ]
                     ]
@@ -1182,7 +1188,7 @@ async def auto_filter(client, msg, spoll=False):
                         chat_id=msg.chat.id,
                         video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
                         caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                                f"<b><a href='https://t.me/UFSNewRelease'>Channel</a></b>. \n\n"
+                                f"<b><a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a></b>. \n\n"
                                 f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
                         reply_to_message_id=msg.id
                     )
@@ -1267,7 +1273,7 @@ async def auto_filter(client, msg, spoll=False):
     ])
     btn.insert(0, [
         InlineKeyboardButton("ᴘᴍ ᴍᴇ", url="https://t.me/UFSChatBot"),
-        InlineKeyboardButton("ɴᴇᴡ ᴍᴏᴠɪᴇs", url="https://t.me/UFSNewRelease")
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
     ])
 
     btn.insert(0, [
@@ -1381,7 +1387,7 @@ async def advantage_spell_chok(client, msg):
             chat_id=msg.chat.id,
             video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
             caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/UFSNewRelease'>Channel</a></b>. \n\n"
+                    f"<b><a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a></b>. \n\n"
                     f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
             reply_to_message_id=msg.id
         )
@@ -1421,7 +1427,7 @@ async def advantage_spell_chok(client, msg):
             chat_id=msg.chat.id,
             video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
             caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/UFSNewRelease'>Channel</a></b>. \n\n"
+                    f"<b><a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a></b>. \n\n"
                     f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
             reply_to_message_id=msg.id
         )
@@ -1461,9 +1467,9 @@ async def advantage_spell_chok(client, msg):
         InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
     ])
 
-    # btn.insert(0, [
-    #     InlineKeyboardButton("⭕️ Wᴇʙ Sᴇʀɪᴇs ⭕️", url="https://t.me/UFSWebSeries")
-    # ])
+    btn.insert(0, [
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+    ])
     #
     # btn.insert(0, [
     #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),

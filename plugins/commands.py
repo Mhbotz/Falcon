@@ -167,8 +167,8 @@ async def start(client, message):
                 f_caption = f"{title}"
             f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
                     f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
-                    f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UFSWebSeries \n🔊 " \
-                    f"Cʜᴀɴɴᴇʟ: @UFSNewRelease \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+                    f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                    f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
 
             # f_caption + f"\n\n<code>┈•••✿ @UniversalFilmStudio ✿•••┈\n\n💾 Size: {size}</code>"
             try:
@@ -185,7 +185,7 @@ async def start(client, message):
                         InlineKeyboardButton('🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"),
                         InlineKeyboardButton('🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio")
                     ], [
-                        InlineKeyboardButton('⭕ ᴘᴍ ᴍᴇ ⭕', url="https://t.me/UFSChatBot")
+                        InlineKeyboardButton('⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜', url='https://t.me/+uuLR9YwyRjg0ODQ0')
                     ]]
                     reply_markup = InlineKeyboardMarkup(buttons)
 
@@ -271,8 +271,8 @@ async def start(client, message):
         f_caption = f"{files.file_name}"
     f_sub_caption = f"<code>💾 Size: {size}</code>\n\n🌟༺ ──•◈•─ ─•◈•──༻🌟\n<b>➧ പുതിയ സിനിമകൾ / വെബ്‌ സീരീസ് " \
                     f"വേണോ? എന്നാൽ പെട്ടെന്ന് ഗ്രൂപ്പിൽ ജോയിൻ ആയിക്കോ\n\n🔊 Gʀᴏᴜᴘ: " \
-                    f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UFSWebSeries \n🔊 " \
-                    f"Cʜᴀɴɴᴇʟ: @UFSNewRelease \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
+                    f"@UniversalFilmStudio \n🔊 Gʀᴏᴜᴘ: @UniversalFilmStudioo \n🔊 " \
+                    f"Cʜᴀɴɴᴇʟ: <a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a> \n\n🎗️ʝσιи 🎗️ ѕнαяє🎗️ ѕυρρσят🎗️ </b>"
 
     f_caption = f_caption + f"\n\n{f_sub_caption}"
     try:
@@ -280,7 +280,7 @@ async def start(client, message):
             InlineKeyboardButton('🎭 Nᴇᴡ Uᴘᴅᴀᴛᴇs', url="https://t.me/UFSFilmUpdate"),
             InlineKeyboardButton('🎭 ᴍᴏᴠɪᴇs', url="https://t.me/UniversalFilmStudio")
         ], [
-            InlineKeyboardButton('⭕ ᴘᴍ ᴍᴇ ⭕', url="https://t.me/UFSChatBot")
+            InlineKeyboardButton('⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜', url='https://t.me/+uuLR9YwyRjg0ODQ0')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.send_cached_media(
@@ -628,7 +628,7 @@ async def settings(client, message):
         return
 
 
-@Client.on_message(filters.command('gbroadcast') & filters.private & filters.user(ADMINS))
+@Client.on_message(filters.command('gbroadcast') & filters.private)
 async def g_broadcast(client, message):
     try:
         userid: Optional[Any] = message.from_user.id if message.from_user else None
