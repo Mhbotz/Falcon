@@ -785,10 +785,14 @@ async def gp_broadcast(client, message):
                     await send_broadcast_message(chat['id'], text, data_type, content, buttons, client, message)
                     await asyncio.sleep(0.5)
                 except Exception as e:
-                    await message.reply(str(e))
+                    d_msg = await message.reply(str(e))
+                    await asyncio.sleep(2)
+                    await d_msg.delete()
                     pass
         except Exception as e:
-            await message.reply(str(e))
+            d_msg = await message.reply(str(e))
+            await asyncio.sleep(2)
+            await d_msg.delete()
             return
 
         time_taken = datetime.timedelta(seconds=int(time.time() - start_time))
@@ -796,5 +800,7 @@ async def gp_broadcast(client, message):
             f"**Broadcast Completed:**\n**Completed in** `{time_taken} seconds.`\n\n**Total Chats** ``\n"
             f"**Completed:** `{done} `\n**Success:** `{success}`")
     except Exception as e:
-        await message.reply_text(f"{str(e)}")
+        d_msg = await message.reply_text(f"{str(e)}")
+        await asyncio.sleep(2)
+        await d_msg.delete()
         return

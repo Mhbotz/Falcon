@@ -6,7 +6,8 @@ from database.users_chats_db import db
 from info import ADMINS
 from utils import broadcast_messages, get_msg_type, Types, markdown_parser
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import BadRequest, FloodWait, UserIsBlocked, InputUserDeactivated, UserIsBot, PeerIdInvalid
+from pyrogram.errors import BadRequest, FloodWait, UserIsBlocked, InputUserDeactivated, UserIsBot, \
+    PeerIdInvalid, ChannelInvalid, ChatWriteForbidden
 import asyncio
 
 logger = logging.getLogger(__name__)
@@ -160,6 +161,12 @@ async def send_broadcast_message(user_id, text, data_type, content, buttons, cli
                                          disable_web_page_preview=True)
             except UserIsBlocked:
                 pass
+            except ChannelInvalid:
+                await client.leave_chat(user_id)
+                await db.remove_chat(user_id)
+            except ChatWriteForbidden:
+                await client.leave_chat(user_id)
+                await db.remove_chat(user_id)
             except InputUserDeactivated:
                 pass
             except UserIsBot:

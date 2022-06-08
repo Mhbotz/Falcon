@@ -84,6 +84,11 @@ class Database:
         chat = self.new_group(chat, title)
         await self.grp.insert_one(chat)
 
+    async def remove_chat(self, chat_id):
+        chat = await self.grp.find_one({'id': int(chat_id)})
+        if chat is not None:
+            await self.grp.delete_one({'id': int(chat_id)})
+
     async def get_chat(self, chat):
         chat = await self.grp.find_one({'id': int(chat)})
         if not chat:
