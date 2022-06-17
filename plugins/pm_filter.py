@@ -52,7 +52,7 @@ async def give_filter(client, message):
         await message.delete()
         return
 
-    if len(message.text) < 3:
+    if len(message.text) < 1:
         try:
             msg = await message.reply_text(
                 f"**Nice Try! But, I Need Minimum --__3__-- Character To Find Your Requesting Details,\n"
@@ -1177,7 +1177,7 @@ async def auto_filter(client, msg, spoll=False):
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
 
-        if 2 < len(message.text) < 100:
+        if 0 < len(message.text) < 100:
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:
