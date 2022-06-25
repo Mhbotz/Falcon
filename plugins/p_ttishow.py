@@ -85,11 +85,14 @@ async def leave_a_chat(bot, message):
         reply_markup = InlineKeyboardMarkup(buttons)
         await bot.send_message(
             chat_id=chat,
-            text='<b>Hello Friends, \nMy admin has told me to leave from group so i go! If you wanna add me again contact my support group.</b>',
+            text='<b>Hello Friends, \nMy admin has told me to leave from group so i go! If you wanna add me again '
+                 'contact my support group.</b>',
             reply_markup=reply_markup,
         )
 
         await bot.leave_chat(chat)
+
+        await message.reply_text("I Left From The Requested Chat", quote=True)
     except Exception as e:
         await message.reply(f'Error - {e}')
 
